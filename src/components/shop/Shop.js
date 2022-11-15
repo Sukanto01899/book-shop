@@ -1,17 +1,41 @@
 import React, { useEffect, useState } from 'react';
+import { getAddedProduct, updateDB } from '../../utilitis/fackdb';
 import Cart from '../cart/Cart';
 import Product from '../products/Product';
 
 const Shop = () => {
     const [products, setProducts] = useState([]);
+    const [carts, setCarts] =  useState([])
     useEffect(()=>{
         fetch('products.json')
         .then(res => res.json())
         .then(data => setProducts(data))
-    }, [])
-
-    const handleAddToCart = (id)=>{
-        console.log(id)
+    }, []);
+    useEffect(()=>{
+        const storedCart = getAddedProduct();
+        const savedCart = [];
+        for(const id in storedCart){
+            const addedProduct = products.find(product => product._id === id);
+            if(addedProduct){
+                savedCart.push(addedProduct)
+                addedProduct.quantity = storedCart[id]
+            }
+        }
+        setCarts(savedCart)
+    }, [products])
+    
+    const handleAddToCart = (product)=>{
+        let newCart;
+        if(product.quantity < 1){
+            product.quantity +=1
+            newCart = [...carts, product];
+            setCarts(newCart)
+        }else{
+            product.quantity +=1
+            newCart = [...carts]
+            setCarts(newCart)
+        }
+        updateDB(product._id)
     }
     return (
         <section className='w-11/12 mx-auto '>
@@ -26,7 +50,7 @@ const Shop = () => {
             </div>
             {/* Cart */}
             <div>
-                <Cart></Cart>
+                <Cart carts={carts}></Cart>
             </div>
            </div>
         </section>
