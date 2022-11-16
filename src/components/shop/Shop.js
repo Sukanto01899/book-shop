@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getAddedProduct, updateDB } from '../../utilitis/fackdb';
+import { getAddedProduct, removeCartFromDB, updateDB } from '../../utilitis/fackdb';
 import Cart from '../cart/Cart';
 import Product from '../products/Product';
 
@@ -23,7 +23,32 @@ const Shop = () => {
         }
         setCarts(savedCart)
     }, [products])
+
+    //Choose random item from cart
+    const newCart = [...carts]
+    const chooseOne = ()=>{ 
+        if(carts.length > 0){
+            const random = Math.round(Math.random() * (carts.length - 1));
+            setCarts([carts[random]])
+        }
+    };
+
+    //Choose again button function from cart
+    const chooseAgain = ()=>{
+        setCarts(newCart)
+    };
+
+    // Remove item from cart
+    const removeProduct = (id)=>{
+        removeCartFromDB(id)
+        const removeProduct = carts.find(cart => cart._id === id);
+        const removingCart = [...carts]
+        const rIndex = carts.indexOf(removeProduct)
+        removingCart.splice(rIndex, 1)
+        setCarts(removingCart)
+    };
     
+    //Handle add to cart function
     const handleAddToCart = (product, event)=>{
         event.target.innerText = 'Already Added';
         event.target.disabled = true
@@ -39,6 +64,7 @@ const Shop = () => {
         }
         updateDB(product._id)
     }
+    
     return (
         <section className='w-11/12 mx-auto '>
            <div className='grid lg:grid-cols-4 my-10 gap-6'>
@@ -52,11 +78,12 @@ const Shop = () => {
             </div>
             {/* Cart */}
             <div className='col-span-3 sm:col-span-1 md:col-span-1'>
-                <Cart carts={carts}></Cart>
+                <Cart carts={carts} chooseOne={chooseOne} chooseAgain={chooseAgain} removeProduct={removeProduct}></Cart>
             </div>
            </div>
         </section>
     );
 };
+
 
 export default Shop;

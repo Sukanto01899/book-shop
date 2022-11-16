@@ -9,6 +9,12 @@ const updateDB = (id)=>{
     localStorage.setItem('my-cart', JSON.stringify(shoppingCart))
 }
 
+const removeCartFromDB = (id)=>{
+    const shoppingCart = getAddedProduct()
+    delete shoppingCart[id]
+    localStorage.setItem('my-cart', JSON.stringify(shoppingCart))
+};
+
 const getAddedProduct = ()=>{
     let shoppingCart;
     const getShoppingCart = localStorage.getItem('my-cart')
@@ -21,6 +27,5 @@ const getAddedProduct = ()=>{
     return shoppingCart;
 }
 
-
-export { updateDB, getAddedProduct };
+export { updateDB, getAddedProduct, removeCartFromDB };
 
