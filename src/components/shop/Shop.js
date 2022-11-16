@@ -24,7 +24,9 @@ const Shop = () => {
         setCarts(savedCart)
     }, [products])
     
-    const handleAddToCart = (product)=>{
+    const handleAddToCart = (product, event)=>{
+        event.target.innerText = 'Already Added';
+        event.target.disabled = true
         let newCart;
         if(product.quantity < 1){
             product.quantity +=1
@@ -39,9 +41,9 @@ const Shop = () => {
     }
     return (
         <section className='w-11/12 mx-auto '>
-           <div className='grid lg:grid-cols-4 my-10'>
+           <div className='grid lg:grid-cols-4 my-10 gap-6'>
              {/* Product */}
-             <div className='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 col-span-3 gap-5 justify-self-center	sm:justify-self-stretch	'>
+             <div className='grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 col-span-3 gap-5 justify-self-center	sm:justify-self-stretch'>
                 {products.map(product => <Product 
                 key={product._id}
                 product={product}
@@ -49,7 +51,7 @@ const Shop = () => {
                  ></Product>)}
             </div>
             {/* Cart */}
-            <div>
+            <div className='col-span-3 sm:col-span-1 md:col-span-1'>
                 <Cart carts={carts}></Cart>
             </div>
            </div>
