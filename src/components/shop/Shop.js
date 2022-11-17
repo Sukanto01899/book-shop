@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getAddedProduct, removeCartFromDB, updateDB } from '../../utilitis/fackdb';
+import { getAddedProduct, removeCartFromDB, removeFullCart, updateDB } from '../../utilitis/fackdb';
 import Cart from '../cart/Cart';
 import Product from '../products/Product';
 
@@ -35,6 +35,7 @@ const Shop = () => {
     //Choose again button function from cart
     const chooseAgain = ()=>{
         setCarts([])
+        removeFullCart()
     };
 
     // Remove item from cart

@@ -13,7 +13,7 @@ const Product = ({product, handleAddToCart}) => {
                 <div className='text-yellow-400	text-sm'><FontAwesomeIcon icon={faStar} /> <FontAwesomeIcon icon={faStar} /> <FontAwesomeIcon icon={faStar} /> <FontAwesomeIcon icon={faStar} /></div>
             </div>
             
-            <button onClick={(event)=> handleAddToCart(product, event)} className='w-4/5 mx-auto py-1 bg-orange-400 rounded-lg transform hover:duration-300 hover:bg-gray-100 hover:ring-2 hover:ring-orange-400  mb-3'>Add To Cart <FontAwesomeIcon icon={faCartPlus}/></button>
+            <button onClick={(event)=> handleAddToCart(product, event)} className='w-4/5 mx-auto mt-1 py-1 bg-orange-400 rounded-lg transform hover:duration-300 hover:bg-gray-100 hover:ring-2 hover:ring-orange-400  mb-3'>Add To Cart <FontAwesomeIcon icon={faCartPlus}/></button>
             
         </div>
     );

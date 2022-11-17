@@ -15,6 +15,11 @@ const removeCartFromDB = (id)=>{
     localStorage.setItem('my-cart', JSON.stringify(shoppingCart))
 };
 
+const removeFullCart = ()=>{
+    localStorage.removeItem('my-cart')
+};
+
+
 const getAddedProduct = ()=>{
     let shoppingCart;
     const getShoppingCart = localStorage.getItem('my-cart')
@@ -27,5 +32,5 @@ const getAddedProduct = ()=>{
     return shoppingCart;
 }
 
-export { updateDB, getAddedProduct, removeCartFromDB };
+export { updateDB, getAddedProduct, removeCartFromDB, removeFullCart };
 
