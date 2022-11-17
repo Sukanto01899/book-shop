@@ -76,7 +76,7 @@ const Shop = () => {
                  ></Product>)}
             </div>
             {/* Cart */}
-            <div className='col-span-3 sm:col-span-1 md:col-span-1'>
+            <div className='col-span-3 sm:col-span-3 md:col-span-3 lg:col-span-1'>
                 <Cart carts={carts} chooseOne={chooseOne} chooseAgain={chooseAgain} removeProduct={removeProduct}></Cart>
             </div>
            </div>

@@ -3,8 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 
 const Product = ({product, handleAddToCart}) => {
-    const {img, price, name, _id} = product;
-    
+    const {img, price, name} = product;
     return (
             <div className='flex flex-col justify-center h-80 	rounded-lg transform hover:duration-500 hover:scale-110 hover:drop-shadow-xl hover:bg-white w-56 sm:w-full overflow-hidden	'>
             <img className='h-52 mx-auto pt-3' src={img} alt="" />

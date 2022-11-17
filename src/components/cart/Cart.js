@@ -15,8 +15,8 @@ const Cart = ({carts, chooseOne, chooseAgain, removeProduct}) => {
                 removeProduct={removeProduct}></SelectedProduct>)}
             </div>
             <div className='flex space-x-1'>
-            <button onClick={()=> chooseOne()} className='w-full bg-orange-400 py-2'>Choose 1 for me</button>
-            <button onClick={()=> chooseAgain()} className='w-full bg-orange-400 py-2'>Choose again</button>
+            <button onClick={()=> chooseOne()} className='w-full bg-orange-400 py-2 text-base rounded-md uppercase hover:bg-orange-300'>Choose 1 for me</button>
+            <button onClick={()=> chooseAgain()} className='w-full bg-orange-400 py-2 text-base rounded-md uppercase'>Choose again</button>
             </div>
         </div>
     );
