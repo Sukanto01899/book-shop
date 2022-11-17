@@ -25,7 +25,6 @@ const Shop = () => {
     }, [products])
 
     //Choose random item from cart
-    const newCart = [...carts]
     const chooseOne = ()=>{ 
         if(carts.length > 0){
             const random = Math.round(Math.random() * (carts.length - 1));
@@ -35,7 +34,7 @@ const Shop = () => {
 
     //Choose again button function from cart
     const chooseAgain = ()=>{
-        setCarts(newCart)
+        setCarts([])
     };
 
     // Remove item from cart
@@ -50,19 +49,19 @@ const Shop = () => {
     
     //Handle add to cart function
     const handleAddToCart = (product, event)=>{
-        event.target.innerText = 'Already Added';
-        event.target.disabled = true
-        let newCart;
-        if(product.quantity < 1){
-            product.quantity +=1
-            newCart = [...carts, product];
-            setCarts(newCart)
-        }else{
-            product.quantity +=1
-            newCart = [...carts]
-            setCarts(newCart)
+        if(carts.length >= 4){
+            alert('You can not add more then 4 product')
+            return;
         }
-        updateDB(product._id)
+        event.target.innerText = 'Already Added';
+        if(carts.indexOf(product) === -1){
+            product.quantity +=1
+            const newCart = [...carts, product];
+            setCarts(newCart)
+            updateDB(product._id)
+        }else{
+            alert('Product already added')
+        }
     }
     
     return (
